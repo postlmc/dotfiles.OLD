@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Links files in this directory to the current users home directory. If the link
 # already exists the file will be skipped unless the -f flag is given. The -p
@@ -7,9 +7,8 @@
 # Original shamelessly lifted from https://gist.github.com/975295
 
 SCRIPT_DIR="$(cd "$(dirname "${0}")" && pwd -P)"
-ENABLED=${SCRIPT_DIR}/enabled
-NO_LINK=${SCRIPT_DIR}/nolink
-PREFIX=${HOME}
+NO_LINK="${SCRIPT_DIR}/nolink"
+PREFIX="${HOME}"
 FORCE=0
 
 while getopts "fp:" flag; do
@@ -18,7 +17,7 @@ while getopts "fp:" flag; do
         FORCE=1
         echo "Forcibly linking as needed"
         ;;
-    p) PREFIX=${OPTARG} ;;
+    p) PREFIX="${OPTARG}" ;;
     esac
 done
 
@@ -34,7 +33,7 @@ for TARGET_FILE in "${SCRIPT_DIR}"/*; do
     fi
     LINK="${PREFIX}/.${DOT_FILE}"
     if [ -e "${LINK}" ]; then
-        if [ -L "${LINK}" ] && [ "$(readlink "${LINK}")" = "${TARGET_FILE}" ]; then
+        if [ -L "${LINK}" ] && [ "$(readlink -f "${LINK}" 2>/dev/null || readlink "${LINK}")" = "${TARGET_FILE}" ]; then
             echo "${LINK} already correctly linked, skipping"
             continue
         fi
@@ -47,12 +46,8 @@ for TARGET_FILE in "${SCRIPT_DIR}"/*; do
         fi
     fi
     echo "Linking ${LINK} to ${TARGET_FILE}"
-    ln -s "${TARGET_FILE}" "${LINK}"
+    if ! ln -s "${TARGET_FILE}" "${LINK}"; then
+        echo "Error: Failed to create symlink ${LINK}" >&2
+        continue
+    fi
 done
-
-# At least set up the base environment file
-mkdir -p ${ENABLED}
-(
-    cd ${ENABLED}
-    [[ ! -L 00-environment ]] && ln -s ${SCRIPT_DIR}/available/00-environment
-)
