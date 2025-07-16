@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# Check for Docker or Podman
+# Prefer Docker, but if only Podman is available, alias docker to podman for compatibility
+if ! command -v docker >/dev/null 2>&1 && command -v podman >/dev/null 2>&1; then
+    alias docker=podman
+fi
+
+# Check for Docker or Podman (after aliasing)
 command -v docker >/dev/null 2>&1 || return
 
 # Common aliases that work with both Docker and Podman
