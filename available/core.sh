@@ -154,6 +154,5 @@ else
 fi
 
 # Common environment variables
-export GZIP=-9
 export CASE_SENSITIVE="true"
 export QUOTING_STYLE=literal

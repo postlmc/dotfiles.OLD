@@ -11,8 +11,8 @@ HOST=$(hostname -s | sed 's/-.gbe$//g' | tr "[:upper:]" "[:lower:]")
 
 # Set up completion paths
 fpath=(
-    ${HOME}/.zsh/completion
-    ${fpath}
+    ~/.zsh/completion
+    $fpath
 )
 
 # Cache completions
@@ -72,3 +72,5 @@ setopt HIST_REDUCE_BLANKS
 unsetopt INC_APPEND_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 setopt EXTENDED_HISTORY
+
+(($ + commands[fzf])) && eval "$(fzf --zsh)"
