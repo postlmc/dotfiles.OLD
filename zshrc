@@ -73,4 +73,4 @@ unsetopt INC_APPEND_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 setopt EXTENDED_HISTORY
 
-(($ + commands[fzf])) && eval "$(fzf --zsh)"
+(( $+commands[fzf] )) && eval "$(fzf --zsh)"
