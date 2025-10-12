@@ -3,8 +3,8 @@
 command -v kubectl >/dev/null 2>&1 || return
 
 alias k='kubectl'
-alias kv='kubectl -v=7'
-alias kv8='kubectl -v=8'
+alias kv='kubectl -v=6'
+alias kvv='kubectl -v=9'
 
 alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
 
