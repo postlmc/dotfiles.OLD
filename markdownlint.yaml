@@ -3,3 +3,5 @@ MD007:
   indent: 4
 MD013:
   line_length: 132
+MD024:
+  siblings_only: true
