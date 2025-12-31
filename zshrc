@@ -47,7 +47,7 @@ autoload run-help
 
 # History configuration (works on both macOS and Linux)
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000000
+export HISTSIZE=1200000
 export SAVEHIST=1000000
 
 # Timestamps: zsh stores timestamps if EXTENDED_HISTORY is set (see below).
