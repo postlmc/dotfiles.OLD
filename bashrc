@@ -10,14 +10,6 @@ HOST=$(hostname -s | sed 's/-.gbe$//g' | tr "[:upper:]" "[:lower:]")
 [[ -r ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] &&
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
 
-# Set vi mode
-set -o vi
-
-# Environment variables
-export GZIP=-9
-export CASE_SENSITIVE="true"
-export QUOTING_STYLE=literal
-
 # History configuration
 export HISTFILE=~/.bash_history
 export HISTSIZE=1000000

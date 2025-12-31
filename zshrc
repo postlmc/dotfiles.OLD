@@ -45,13 +45,6 @@ autoload run-help
 [[ -d "${HOME}/.local/bin" ]] && prepend_path PATH ${HOME}/.local/bin
 [[ -d "${HOME}/bin" ]] && prepend_path PATH ${HOME}/bin
 
-set -o vi
-
-export GZIP=-9
-
-export CASE_SENSITIVE="true"
-export QUOTING_STYLE=literal
-
 # History configuration (works on both macOS and Linux)
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000

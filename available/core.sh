@@ -3,10 +3,6 @@
 # Essential shell behavior for consistent history and command editing
 set -o vi
 
-HISTCONTROL=ignoreboth
-HISTSIZE=10000
-HISTFILESIZE=20000
-
 # Ensure consistent character encoding across all tools
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -154,5 +150,6 @@ else
 fi
 
 # Common environment variables
+export GZIP=-9
 export CASE_SENSITIVE="true"
 export QUOTING_STYLE=literal
